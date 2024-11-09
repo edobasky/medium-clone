@@ -43,7 +43,8 @@ data$ = combineLatest({
    const request: LoginRequestInterface = {
     user : this.form.getRawValue(),
    }
+   console.log("about to dispatch login action");
    this.store.dispatch(authActions.login({request}));
-   //this.authService.register(request).subscribe((res)=> console.log('res',res));
+   //this.authService.login(request).subscribe((res)=> console.log('res',res));
   }
 }

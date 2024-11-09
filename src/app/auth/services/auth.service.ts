@@ -19,6 +19,16 @@ export class AuthService {
     return response.user
   }
 
+
+  getCurrentUser() : Observable<CurrentUserInterface> {
+    const url = environment.apiUrl + '/user'
+
+    return this.http
+      .get<AuthResponseInetrface>(url)
+      .pipe(map(this.getUser));
+  }
+
+
   register(data : RegisterRequestInterface) : Observable<CurrentUserInterface> {
     const url = environment.apiUrl + '/users'
 
@@ -28,6 +38,7 @@ export class AuthService {
   }
 
   login(data : LoginRequestInterface) : Observable<CurrentUserInterface> {
+    console.log("api call made")
     const url = environment.apiUrl + '/users/login'
     return this.http.post<AuthResponseInetrface>(url,data)
                .pipe(map((response) => response.user))
