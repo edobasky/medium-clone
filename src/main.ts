@@ -9,11 +9,15 @@ import { provideStoreDevtools } from "@ngrx/store-devtools";
 import { isDevMode } from "@angular/core";
 import * as authEffects from './app/auth/store/effects'
 import { provideEffects } from "@ngrx/effects";
+import { provideRouterStore, routerReducer } from "@ngrx/router-store";
 
 bootstrapApplication(AppComponent, {providers: [
   provideHttpClient(),
   provideRouter(appRoutes),
-  provideStore(),
+  provideStore({
+    router : routerReducer
+  }),
+  provideRouterStore(),
   provideState(authFeatureKey, authReducer),
   provideEffects(authEffects),
   provideStoreDevtools({
